@@ -12,9 +12,17 @@ unsigned char s_R1 = 0;
 unsigned char s_R2 = 0;
 unsigned char s_R3 = 0;
 
-//레지스터에 값 설정
-void set_register(unsigned char* reg, unsigned char value)
+unsigned char s_PC = 0; //프로그램 카운터
+
+//레지스터에 값 설정 (레지스터끼리 복사)
+void set_register_copy(unsigned char* reg, unsigned char value)
 {
     *reg = value;
     *reg &= BIT_MASK; //bit masking을 통한 상위 4개비트 무시
+}
+
+//레지스터에 값 설정(즉시값 설정)
+void set_register_immediate(unsigned char* reg1, unsigned char* reg2)
+{
+    *reg1 = *reg2;
 }
