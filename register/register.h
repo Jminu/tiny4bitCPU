@@ -10,9 +10,9 @@ extern unsigned char s_R1;
 extern unsigned char s_R2;
 extern unsigned char s_R3;
 
-extern unsigned char s_PC; //프로그램 카운터
+extern unsigned char PC; //프로그램 카운터
 
-void set_register_copy(unsigned char* reg, unsigned char value);
-void set_register_immediate(unsigned char* reg1, unsigned char* reg2);
+void set_register_immediate(unsigned char* reg, unsigned char value);
+void set_register_copy(unsigned char* reg1, unsigned char* reg2);
 
 #endif //REGISTER_H

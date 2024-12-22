@@ -7,22 +7,22 @@
 #include "register.h"
 
 //register.h에 extern변수를 정의
-unsigned char s_R0 = 0;
-unsigned char s_R1 = 0;
-unsigned char s_R2 = 0;
-unsigned char s_R3 = 0;
+unsigned char R0 = 0;
+unsigned char R1 = 0;
+unsigned char R2 = 0;
+unsigned char R3 = 0;
 
-unsigned char s_PC = 0; //프로그램 카운터
+unsigned char PC = 0; //프로그램 카운터
 
-//레지스터에 값 설정 (레지스터끼리 복사)
-void set_register_copy(unsigned char* reg, unsigned char value)
+//레지스터에 값 설정(즉시값 설정)
+void set_register_immediate(unsigned char* reg, unsigned char value)
 {
     *reg = value;
     *reg &= BIT_MASK; //bit masking을 통한 상위 4개비트 무시
 }
 
-//레지스터에 값 설정(즉시값 설정)
-void set_register_immediate(unsigned char* reg1, unsigned char* reg2)
+//레지스터에 값 설정 (레지스터끼리 복사)
+void set_register_copy(unsigned char* dest_reg, unsigned char* source_reg)
 {
-    *reg1 = *reg2;
+    *dest_reg = *source_reg;
 }
