@@ -30,8 +30,5 @@ void decoder()
         unsigned char dest_reg = operand;
         unsigned char source_mem_address = PC + 1; //메모리의 데이터는 현재 pc의 다음주소에
         load_register(&dest_reg, source_mem_address); //레지스터에 load
-    case 0x02: //STR
-
-    case 0x03:
     }
 }
