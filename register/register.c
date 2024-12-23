@@ -6,6 +6,7 @@
 // R3 : 비교 or 조건부 점프 레지스터
 #include "register.h"
 #include <string.h>
+#include <stdio.h>
 
 //register.h에 extern변수를 정의
 unsigned char R0 = 0;
@@ -39,4 +40,9 @@ unsigned char get_register_code(unsigned char* reg)
     if(strcmp(reg, "R3") == 0)
         return 0x3;
     return -1; //잘못된 레지스터 이름
+}
+
+void show_register()
+{
+    printf("R0: %x R1: %x R2: %x R3: %x\n", R0, R1, R2, R3);
 }

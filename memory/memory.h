@@ -6,7 +6,7 @@
 //메모리는 번지당 1byte임
 
 extern unsigned char memory[16]; //16byte
-void set_command_to_memory(char* parsed_command);
+void set_command_to_memory(char** parsed_command);
 void show_memory();
 
 #endif //MEMORY_H

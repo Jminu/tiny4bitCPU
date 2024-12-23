@@ -15,5 +15,6 @@ extern unsigned char PC; //프로그램 카운터
 void set_register_immediate(unsigned char* reg, unsigned char value);
 void set_register_copy(unsigned char* reg1, unsigned char* reg2);
 unsigned char get_register_code(unsigned char* reg);
+void show_register();
 
 #endif //REGISTER_H

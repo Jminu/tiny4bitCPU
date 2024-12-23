@@ -3,6 +3,7 @@
 #include <string.h>
 #include "../register/register.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 //16byte 메모리 정의
 unsigned char memory[16] = {0};
@@ -11,7 +12,7 @@ void set_command_to_memory(char** parsed_command)
 {
     if (strcmp(parsed_command[0], "MOV") == 0) //MOV : 0000, 즉시값 MOV : 1000
     {
-        if (parsed_command[2][0] < 48 || parsed_command[2][0] > 57) //2번째 인자가 정수라면, '즉시값'
+        if (parsed_command[2][0] > 48 && parsed_command[2][0] < 57) //2번째 인자가 정수라면, '즉시값'
         {
             unsigned char immediate_value = atoi(parsed_command[2]);
             unsigned char dest_reg = get_register_code(parsed_command[1]);
@@ -30,4 +31,14 @@ void set_command_to_memory(char** parsed_command)
             PC++;
         }
     }
+}
+
+void show_memory()
+{
+    for(int i = 0; i < 16; i++)
+    {
+        printf("=================\n");
+        printf("0x%x\n", memory[i]);
+    }
+    printf("=================\n");
 }

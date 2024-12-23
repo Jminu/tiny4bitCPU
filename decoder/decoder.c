@@ -26,9 +26,5 @@ void decoder()
             unsigned char value = memory[PC + 1]; //다음 주소에서 데이터 가져옴
             set_register_immediate(&dest, value);
         }
-    case 0x01: //LOAD
-        unsigned char dest_reg = operand;
-        unsigned char source_mem_address = PC + 1; //메모리의 데이터는 현재 pc의 다음주소에
-        load_register(&dest_reg, source_mem_address); //레지스터에 load
     }
 }
