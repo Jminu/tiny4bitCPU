@@ -35,10 +35,27 @@ void set_command_to_memory(char** parsed_command)
 
 void show_memory()
 {
+    int num = 0;
+    printf("=================\n");
     for(int i = 0; i < 16; i++)
     {
-        printf("=================\n");
-        printf("0x%x\n", memory[i]);
+        unsigned char arr[8] = {0};
+        num = memory[i];
+        for(int j = 7; j >= 0; j--)
+        {
+            if(num != 0)
+            {
+                arr[j] = num % 2;
+                num = num / 2;
+            }
+        }
+        for(int j = 0; j < 8; j++)
+        {
+            if(j == 4)
+                printf(" ");
+            printf("%d", arr[j]);
+        }
+        printf("\n");
     }
     printf("=================\n");
 }
