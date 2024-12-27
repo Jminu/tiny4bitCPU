@@ -8,6 +8,7 @@
 #include <string.h>
 #include <stdio.h>
 
+
 //register.h에 extern변수를 정의
 unsigned char R0 = 0;
 unsigned char R1 = 0;
@@ -29,15 +30,32 @@ void set_register_copy(unsigned char* dest_reg, unsigned char* source_reg)
     *dest_reg = *source_reg;
 }
 
+unsigned char* get_register_address(unsigned char reg_code)
+{
+    switch (reg_code)
+    {
+    case 0x0:
+        return &R0;
+    case 0x1:
+        return &R1;
+    case 0x2:
+        return &R2;
+    case 0x3:
+        return &R3;
+    default:
+        return NULL;
+    }
+}
+
 unsigned char get_register_code(unsigned char* reg)
 {
-    if(strcmp(reg, "R0") == 0)
+    if (strcmp(reg, "R0") == 0)
         return 0x0;
-    if(strcmp(reg, "R1") == 0)
+    if (strcmp(reg, "R1") == 0)
         return 0x1;
-    if(strcmp(reg, "R2") == 0)
+    if (strcmp(reg, "R2") == 0)
         return 0x2;
-    if(strcmp(reg, "R3") == 0)
+    if (strcmp(reg, "R3") == 0)
         return 0x3;
     return -1; //잘못된 레지스터 이름
 }

@@ -16,7 +16,7 @@ add_executable(4BitComptuer main.c
         decoder/decoder.c
         fetcher/fetcher.c
         fetcher/fetcher.h
-        execute/execute.c
-        execute/execute.h
+        executor/executor.c
+        executor/executor.h
         assembler/asembler.c
         assembler/assembler.h)

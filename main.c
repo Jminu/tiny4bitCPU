@@ -18,8 +18,14 @@ int main(void)
         code = input_command(); //명렁어 입력 ex) MOV R0 5
         parsed_code = parse_command(code); //코드 파싱
         set_command_to_memory(parsed_code); //코드를 메모리로 load
-        show_memory();
+        printf("%d\n", PC);
+
         fetch_instruction(); //fetch code
-        decoder(); //decode
+        printf("%d\n", PC);
+
+        decode(); //decode
+        printf("%d\n", PC);
+
+        show_register();
     }
 }

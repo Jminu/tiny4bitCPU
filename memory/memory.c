@@ -17,10 +17,8 @@ void set_command_to_memory(char** parsed_command)
             unsigned char immediate_value = atoi(parsed_command[2]);
             unsigned char dest_reg = get_register_code(parsed_command[1]);
 
-            memory[PC] = 0x80 | dest_reg;
-            PC++;
-            memory[PC] = immediate_value;
-            PC++;
+            memory[PC] = 0x80 | dest_reg; //0x80 = 1000 (즉시값 MOV)
+            memory[PC + 1] = immediate_value;
         }
         else //2번째 인자가 레지스터 이름이면, '값복사'
         {
@@ -28,7 +26,6 @@ void set_command_to_memory(char** parsed_command)
             unsigned char src_reg = get_register_code(parsed_command[2]); //소스 레지스터 코드
 
             memory[PC] = (0x0 << 4) | ((dest_reg & 0x03) << 2) | src_reg & 0x03; //ex) 0000 0111: MOV R1 R3
-            PC++;
         }
     }
 }
