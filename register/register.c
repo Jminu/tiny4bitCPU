@@ -15,6 +15,8 @@ unsigned char R1 = 0;
 unsigned char R2 = 0;
 unsigned char R3 = 0;
 
+//PC는 execution될때만 움직인다.
+//code를 메모리에 load할때, fetch할때, decode할때 등등은 PC의 값을 복사하여 사용한다.
 unsigned char PC = 0; //프로그램 카운터
 
 //레지스터에 값 설정(즉시값 설정)

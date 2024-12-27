@@ -3,5 +3,7 @@
 
 void mov_execute_copy(unsigned char *dest_reg, unsigned char *src_reg);
 void mov_execute_immediate(unsigned char* dest_reg, unsigned char value);
+void store_execute(unsigned char *source_reg, unsigned char memory_address);
+
 
 #endif //EXECUTE_H

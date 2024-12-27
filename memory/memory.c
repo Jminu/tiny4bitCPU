@@ -11,6 +11,7 @@ unsigned char memory[16] = {0};
 //나눠진 어셈블리 코드를 메모리에 저장한다
 void set_command_to_memory(char** parsed_command)
 {
+    unsigned char PC_temp = PC;
     if (strcmp(parsed_command[0], "MOV") == 0) //MOV : 0000, 즉시값 MOV : 1000
     {
         if (parsed_command[2][0] > 48 && parsed_command[2][0] < 57) //2번째 인자가 정수라면, '즉시값'
@@ -18,15 +19,15 @@ void set_command_to_memory(char** parsed_command)
             unsigned char immediate_value = atoi(parsed_command[2]);
             unsigned char dest_reg = get_register_code(parsed_command[1]);
 
-            memory[PC] = 0x80 | dest_reg; //0x80 = 1000 (즉시값 MOV)
-            memory[PC + 1] = immediate_value;
+            memory[PC_temp] = 0x80 | dest_reg; //0x80 = 1000 (즉시값 MOV)
+            memory[PC_temp + 1] = immediate_value;
         }
         else //2번째 인자가 레지스터 이름이면, '값복사'
         {
             unsigned char dest_reg = get_register_code(parsed_command[1]); //목적 레지스터 코드
             unsigned char src_reg = get_register_code(parsed_command[2]); //소스 레지스터 코드
 
-            memory[PC] = (0x0 << 4) | ((dest_reg & 0x03) << 2) | src_reg & 0x03; //ex) 0000 0111: MOV R1 R3
+            memory[PC_temp] = (((0x0 | dest_reg) << 2) & 0xC) | src_reg; //ex) 0000 0111: MOV R1 R3
         }
     }
     else if (strcmp(parsed_command[0], "STR") == 0) //STR: 0010
@@ -34,7 +35,7 @@ void set_command_to_memory(char** parsed_command)
         char* extracted_memory_address = (char*)malloc(sizeof(char) * 16);
         unsigned char src_reg = get_register_code(parsed_command[1]);
 
-        memory[PC] = 0x20 | src_reg; //0x20 = 0010 (STR 명령어)
+        memory[PC_temp] = 0x20 | src_reg; //0x20 = 0010 (STR 명령어)
         //만약 STR R3 [14]면, memory[i] = 0010 0011 이다.
 
         //저장할 메모리 주소를 추출한다. [15]라면 15를 추출해야함
@@ -44,10 +45,8 @@ void set_command_to_memory(char** parsed_command)
             strcat(extracted_memory_address, temp);
         }
 
-        unsigned char address = atoi(extracted_memory_address);
-
-        //추출한 메모리 주소에 레지스터값을 저장
-        memory[address] = src_reg;
+        unsigned char address = atoi(extracted_memory_address); //저장할 메모리 주소
+        memory[PC_temp + 1] = address; //다음주소에 저장할 메모리 주소 저장
     }
 }
 
@@ -90,4 +89,3 @@ void show_memory()
     }
     printf("========================\n");
 }
-
