@@ -14,7 +14,7 @@ void decode()
 
     switch (opcode)
     {
-    case 0x00: //MOV
+    case 0x0: //MOV
         if (mode == 0x00) //값 복사 (1byte로 처리)
         {
             unsigned char dest_reg = (operand >> 2) & 0x3;
@@ -34,5 +34,9 @@ void decode()
 
             mov_execute_immediate(dest_reg_address, value);
         }
+    case 0x1: //LOAD data from memory to register
+
+    case 0x2: //STR data register to memory
+        
     }
 }
