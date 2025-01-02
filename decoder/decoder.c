@@ -38,6 +38,14 @@ void decode()
         }
         break;
     case 0x1: //LOAD data from memory to register
+        if(mode == 0x00)
+        {
+            unsigned char dest_reg = operand & 0x3;
+            unsigned char* dest_reg_address = get_register_address(dest_reg);
+            unsigned char src_memory_address = memory[PC_temp + 1] & 0xf;
+
+            load_execute(dest_reg_address, src_memory_address);
+        }
         break;
     case 0x2: //STR data register to memory
         if (mode == 0x00)

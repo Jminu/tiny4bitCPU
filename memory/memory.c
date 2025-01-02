@@ -30,7 +30,7 @@ void set_command_to_memory(char** parsed_command)
             memory[PC_temp] = (((0x0 | dest_reg) << 2) & 0xC) | src_reg; //ex) 0000 0111: MOV R1 R3
         }
     }
-    else if (strcmp(parsed_command[0], "STR") == 0) //STR: 0010
+    else if (strcmp(parsed_command[0], "STR") == 0) //STR: 0010 레지스터에서 메모리로 저장
     {
         char* extracted_memory_address = (char*)malloc(sizeof(char) * 16);
         unsigned char src_reg = get_register_code(parsed_command[1]);
@@ -47,6 +47,24 @@ void set_command_to_memory(char** parsed_command)
 
         unsigned char address = atoi(extracted_memory_address); //저장할 메모리 주소
         memory[PC_temp + 1] = address; //다음주소에 저장할 메모리 주소 저장
+        free(extracted_memory_address);
+    }
+    else if(strcmp(parsed_command[0], "LOAD") == 0) //LOAD: 0001 메모리에서 레지스터로 적재, ex)LOAD R0 [14]
+    {
+        char* extracted_memory_address = (char*)malloc(sizeof(char) * 16); //데이터 가져올 메모리 주소
+        unsigned char dest_reg = get_register_code(parsed_command[1]); //저장할 레지스터
+
+        memory[PC_temp] = 0x10 | dest_reg;
+
+        for(int i = 1; i < strlen(parsed_command[2]) - 1; i++)
+        {
+            char temp[2] = {parsed_command[2][i], '\0'};
+            strcat(extracted_memory_address, temp);
+        }
+
+        unsigned char address = atoi(extracted_memory_address); //데이터 가져올 메모리 주소
+        memory[PC_temp + 1] = address; //메모리에 데이터 가져올 메모리 주소 저장
+        free(extracted_memory_address);
     }
 }
 
