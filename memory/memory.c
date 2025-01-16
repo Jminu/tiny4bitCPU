@@ -49,14 +49,14 @@ void set_command_to_memory(char** parsed_command)
         memory[PC_temp + 1] = address; //다음주소에 저장할 메모리 주소 저장
         free(extracted_memory_address);
     }
-    else if(strcmp(parsed_command[0], "LOAD") == 0) //LOAD: 0001 메모리에서 레지스터로 적재, ex)LOAD R0 [14]
+    else if (strcmp(parsed_command[0], "LOAD") == 0) //LOAD: 0001 메모리에서 레지스터로 적재, ex)LOAD R0 [14]
     {
         char* extracted_memory_address = (char*)malloc(sizeof(char) * 16); //데이터 가져올 메모리 주소
         unsigned char dest_reg = get_register_code(parsed_command[1]); //저장할 레지스터
 
         memory[PC_temp] = 0x10 | dest_reg;
 
-        for(int i = 1; i < strlen(parsed_command[2]) - 1; i++)
+        for (int i = 1; i < strlen(parsed_command[2]) - 1; i++)
         {
             char temp[2] = {parsed_command[2][i], '\0'};
             strcat(extracted_memory_address, temp);
@@ -65,6 +65,13 @@ void set_command_to_memory(char** parsed_command)
         unsigned char address = atoi(extracted_memory_address); //데이터 가져올 메모리 주소
         memory[PC_temp + 1] = address; //메모리에 데이터 가져올 메모리 주소 저장
         free(extracted_memory_address);
+    }
+    else if (strcmp(parsed_command[0], "ADD") == 0) //ADD: 0011    R1, R2 레지스터 값을 더해서 R1에 저장한다.
+    {
+        unsigned char dest_reg = get_register_code(parsed_command[1]); //목적 레지스터 코드
+        unsigned char src_reg = get_register_code(parsed_command[2]); //소스 레지스터 코드
+
+        memory[PC_temp] = 0x30 | (dest_reg << 2) | src_reg; //메모리에 명렁어, 피연산자 세팅
     }
 }
 

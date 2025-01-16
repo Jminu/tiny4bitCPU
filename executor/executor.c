@@ -31,3 +31,9 @@ void load_execute(unsigned char* dest_reg, unsigned char memory_address)
     *dest_reg = memory[memory_address];
     PC += 2;
 }
+
+void add_execute(unsigned char* dest_reg, unsigned char* src_reg)
+{
+    *dest_reg = *dest_reg + *src_reg;
+    PC += 1;
+}

@@ -3,6 +3,7 @@
 #include "../register/register.h"
 #include "../fetcher/fetcher.h"
 #include "../executor/executor.h"
+#include <stdio.h>
 
 
 //fetch해온 명령어를 해석
@@ -38,7 +39,7 @@ void decode()
         }
         break;
     case 0x1: //LOAD data from memory to register
-        if(mode == 0x00)
+        if (mode == 0x00)
         {
             unsigned char dest_reg = operand & 0x3;
             unsigned char* dest_reg_address = get_register_address(dest_reg);
@@ -57,5 +58,13 @@ void decode()
             store_execute(src_reg_address, dest_memory_address);
         }
         break;
+    case 0x3: //ADD command
+        if (mode == 0x00)
+        {
+            unsigned char dest_reg = (operand >> 2) & 0x3; //목적 레지스터 두번 right shift한다음 하위 2개만 추출
+            unsigned char src_reg = operand & 0x3; //그냥 하위 2개만 추출
+
+            add_execute(get_register_address(dest_reg), get_register_address(src_reg));
+        }
     }
 }
