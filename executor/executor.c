@@ -37,3 +37,9 @@ void add_execute(unsigned char* dest_reg, unsigned char* src_reg)
     *dest_reg = *dest_reg + *src_reg;
     PC += 1;
 }
+
+void sub_execute(unsigned char* dest_reg, unsigned char* src_reg)
+{
+    *dest_reg = *dest_reg - *src_reg;
+    PC += 1;
+}

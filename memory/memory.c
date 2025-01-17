@@ -73,6 +73,13 @@ void set_command_to_memory(char** parsed_command)
 
         memory[PC_temp] = 0x30 | (dest_reg << 2) | src_reg; //메모리에 명렁어, 피연산자 세팅
     }
+    else if(strcmp(parsed_command[0],  "SUB") == 0) //SUB: 0100 R1, R2 레지스터 값을 빼서 R1에 저장한다. 음수 값은 안됨
+    {
+        unsigned char dest_reg = get_register_code(parsed_command[1]);
+        unsigned char src_reg = get_register_code(parsed_command[2]);
+
+        memory[PC_temp] = 0x40 | (dest_reg << 2) | src_reg; //메모리에 명령어, 피연산자 세팅
+    }
 }
 
 

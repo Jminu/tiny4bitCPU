@@ -66,5 +66,15 @@ void decode()
 
             add_execute(get_register_address(dest_reg), get_register_address(src_reg));
         }
+        break;
+    case 0x4: //SUB command
+        if (mode == 0x00)
+        {
+            unsigned char dest_reg = (operand >> 2) & 0x3;
+            unsigned char src_reg = operand & 0x3;
+
+            sub_execute(get_register_address(dest_reg), get_register_address(src_reg));
+        }
+        break;
     }
 }
