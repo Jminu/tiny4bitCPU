@@ -6,9 +6,9 @@
 #define STR Ox2 //register값을 메모리에 store
 #define ADD 0x3 //두 레지스터값 더함
 #define SUB 0x4 //두 레지스터값 뺌
-#define JMP 0x6 //지정된 메모리 주소로 점프
-#define JEQ 0x7 //비교 결과 같으면 점프
-#define HLT 0xF //프로그램 종료
+#define JMP 0x5 //지정된 메모리 주소로 점프
+#define JEQ 0x6 //비교 결과 같으면 점프
+#define HLT 0x7 //프로그램 종료
 
 
 

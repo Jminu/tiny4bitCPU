@@ -76,5 +76,7 @@ void decode()
             sub_execute(get_register_address(dest_reg), get_register_address(src_reg));
         }
         break;
+    case 0x5: //JMP command
+
     }
 }

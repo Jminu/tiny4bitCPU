@@ -19,4 +19,6 @@ add_executable(4BitComptuer main.c
         executor/executor.c
         executor/executor.h
         assembler/asembler.c
-        assembler/assembler.h)
+        assembler/assembler.h
+        display/display_memory_state.c
+        display/display_memory_state.h)
