@@ -43,3 +43,8 @@ void sub_execute(unsigned char* dest_reg, unsigned char* src_reg)
     *dest_reg = *dest_reg - *src_reg;
     PC += 1;
 }
+
+void jmp_execute(unsigned char memory_address_to_jump)
+{
+    PC = memory_address_to_jump;
+}

@@ -77,6 +77,11 @@ void decode()
         }
         break;
     case 0x5: //JMP command
-
+        if(mode == 0x00) //0x00모드는 절대주소로 점프
+        {
+            //주소는 0~15까지만 존재한다.
+            unsigned char dest_memory_address = operand; //JMP는 단일항 연산자, 그냥 operand의 값이 점프 할 주소임
+            jmp_execute(dest_memory_address); //점프실행
+        }
     }
 }
