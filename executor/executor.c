@@ -7,6 +7,7 @@ extern unsigned char R0;
 extern unsigned char R1;
 extern unsigned char R2;
 extern unsigned char R3;
+extern unsigned char SR;
 
 void mov_execute_copy(unsigned char* dest_reg, unsigned char* src_reg)
 {
@@ -41,6 +42,10 @@ void add_execute(unsigned char* dest_reg, unsigned char* src_reg)
 void sub_execute(unsigned char* dest_reg, unsigned char* src_reg)
 {
     *dest_reg = *dest_reg - *src_reg;
+    if (*dest_reg == 0) //만약, SUB R0 R1 했을때, 0이라면 R0과 R1이 같다
+    {
+        SR = 1; //상태 레지스터를 1로 만든다.
+    }
     PC += 1;
 }
 

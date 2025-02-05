@@ -10,6 +10,8 @@ extern unsigned char R1;
 extern unsigned char R2;
 extern unsigned char R3;
 
+extern unsigned char SR; //상태 레지스터
+
 extern unsigned char PC; //프로그램 카운터
 
 void set_register_immediate(unsigned char* reg, unsigned char value);
