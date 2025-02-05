@@ -83,5 +83,11 @@ void decode()
             unsigned char dest_memory_address = operand; //JMP는 단일항 연산자, 그냥 operand의 값이 점프 할 주소임
             jmp_execute(dest_memory_address); //점프실행
         }
+    case 0x6: //JEQ command
+        if(mode == 0x00)
+        {
+            unsigned char dest_memory_address = operand; //점프할 주소
+            jeq_execute(dest_memory_address); //JEQ실행
+        }
     }
 }

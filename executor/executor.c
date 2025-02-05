@@ -53,3 +53,11 @@ void jmp_execute(unsigned char memory_address_to_jump)
 {
     PC = memory_address_to_jump;
 }
+
+void jeq_execute(unsigned char memory_address_to_jeq)
+{
+    if(SR == 1) //상태 레지스터가 1이면
+    {
+        jmp_execute(memory_address_to_jeq); //특정 주소로 PC이동
+    }
+}

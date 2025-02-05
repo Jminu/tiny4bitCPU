@@ -73,17 +73,17 @@ void set_command_to_memory(char** parsed_command)
 
         memory[PC_temp] = 0x30 | (dest_reg << 2) | src_reg; //메모리에 명렁어, 피연산자 세팅
     }
-    else if(strcmp(parsed_command[0],  "SUB") == 0) //SUB: 0100 R1, R2 레지스터 값을 빼서 R1에 저장한다. 음수 값은 안됨
+    else if (strcmp(parsed_command[0], "SUB") == 0) //SUB: 0100 R1, R2 레지스터 값을 빼서 R1에 저장한다. 음수 값은 안됨
     {
         unsigned char dest_reg = get_register_code(parsed_command[1]);
         unsigned char src_reg = get_register_code(parsed_command[2]);
 
         memory[PC_temp] = 0x40 | (dest_reg << 2) | src_reg; //메모리에 명령어, 피연산자 세팅
     }
-    else if(strcmp(parsed_command[0], "JMP") == 0) //JMP: 특정한 메모리의 주소(절대주소)로 PC를 이동시킨다.
+    else if (strcmp(parsed_command[0], "JMP") == 0) //JMP: 특정한 메모리의 주소(절대주소)로 PC를 이동시킨다.
     {
         //점프할 메모리 주소
-        unsigned char *extracted_memory_address = (unsigned char*)malloc(sizeof(unsigned char) * 16); //16바이트 할당
+        unsigned char* extracted_memory_address = (unsigned char*)malloc(sizeof(unsigned char) * 16); //16바이트 할당
 
         //점프할 메모리 주소를 추출한다. [15]라면 15를 추출해야함
         for (int i = 1; i < strlen(parsed_command[1]) - 1; i++)
@@ -95,9 +95,20 @@ void set_command_to_memory(char** parsed_command)
         unsigned char address = atoi(extracted_memory_address); //점프 할 메모리 주소
         memory[PC_temp] = 0x50 | address; // 명령어(4비트) | 주소(4비트) 메모리에 세팅
     }
-    else if(strcmp(parsed_command[0], "JEQ") == 0) //JEQ 비교했을때 참이면 JMP를 한다. 여기서 비교연산은 SUB명령어를 확인한다.
+    else if (strcmp(parsed_command[0], "JEQ") == 0) //JEQ 비교했을때 참이면 JMP를 한다. 여기서 비교연산은 SUB명령어를 확인한다.
     {
+        //점프할 메모리 주소
+        unsigned char* extracted_memory_address = (unsigned char*)malloc(sizeof(unsigned char) * 16); //16바이트 할당
 
+        //점프할 메모리 주소 추출
+        for (int i = 1; i < strlen(parsed_command[1]) - 1; i++)
+        {
+            char temp[2] = {parsed_command[1][i], '\0'};
+            strcat(extracted_memory_address, temp);
+        }
+
+        unsigned char address = atoi(extracted_memory_address);
+        memory[PC_temp] = 0x60 | address; //명령어(4비트)와 주소(4비트)를 메모리에 세팅
     }
 }
 
