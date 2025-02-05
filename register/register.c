@@ -15,6 +15,8 @@ unsigned char R1 = 0;
 unsigned char R2 = 0;
 unsigned char R3 = 0;
 
+unsigned char SR = 0; //state register, JEQ에서 사용하기 위함
+
 //PC는 execution될때만 움직인다.
 //code를 메모리에 load할때, fetch할때, decode할때 등등은 PC의 값을 복사하여 사용한다.
 unsigned char PC = 0; //프로그램 카운터
@@ -44,6 +46,8 @@ unsigned char* get_register_address(unsigned char reg_code)
         return &R2;
     case 0x3:
         return &R3;
+    case 0x4:
+        return &SR;
     default:
         return NULL;
     }
@@ -59,10 +63,12 @@ unsigned char get_register_code(unsigned char* reg)
         return 0x2;
     if (strcmp(reg, "R3") == 0)
         return 0x3;
+    if (strcmp(reg, "SR") == 0)
+        return 0x4;
     return -1; //잘못된 레지스터 이름
 }
 
 void show_register()
 {
-    printf("R0: %x R1: %x R2: %x R3: %x\n", R0, R1, R2, R3);
+    printf("R0: %x R1: %x R2: %x R3: %x SR: %x\n", R0, R1, R2, R3, SR);
 }

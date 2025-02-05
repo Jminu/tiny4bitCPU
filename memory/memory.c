@@ -95,6 +95,10 @@ void set_command_to_memory(char** parsed_command)
         unsigned char address = atoi(extracted_memory_address); //점프 할 메모리 주소
         memory[PC_temp] = 0x50 | address; // 명령어(4비트) | 주소(4비트) 메모리에 세팅
     }
+    else if(strcmp(parsed_command[0], "JEQ") == 0) //JEQ 비교했을때 참이면 JMP를 한다. 여기서 비교연산은 SUB명령어를 확인한다.
+    {
+
+    }
 }
 
 
