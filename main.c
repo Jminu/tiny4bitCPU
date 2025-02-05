@@ -5,14 +5,14 @@
 #include "assembler/assembler.h"
 #include "fetcher/fetcher.h"
 #include "decoder/decoder.h"
-
+#include "filesystem/filesystem.h"
 
 int main(void)
 {
     char* code = NULL;
     char** parsed_code = NULL;
 
-    while(1)
+    while (1)
     {
         printf(">>>");
         code = input_command(); //명렁어 입력 ex) MOV R0 5
