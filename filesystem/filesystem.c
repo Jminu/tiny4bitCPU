@@ -48,6 +48,8 @@ void write_command_to_file(char* command_by_user, int fd) //인자1: 사용자�
     }
 
     char buffer[80]; //버퍼를 생성
+    bzero(buffer, 80);
     strcpy(buffer, command_by_user); //버퍼에 넣어두고
     write(fd, buffer, strlen(buffer)); //파일에 명령어를 씀
+    write(fd, "\n", 1); //개행문자 추가
 }
