@@ -3,8 +3,8 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-
-int create_new_file(char* path)
+//파일 생성하는 함수
+int create_new_file(char* path) //path: 파일 경로
 {
     //파일 생성, read, write전용으로
     int fd = open(path, O_CREAT | O_RDWR, 0666);
