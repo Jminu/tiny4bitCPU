@@ -4,11 +4,13 @@
 #include <stdlib.h>
 #include <string.h>
 
+static int fd;
+
 //파일 생성하는 함수
 int create_new_file(char* path) //path: 파일 경로
 {
     //파일 생성, read, write전용으로
-    int fd = open(path, O_CREAT | O_RDWR, 0666);
+    fd = open(path, O_CREAT | O_RDWR, 0666);
     if (fd == -1)
     {
         perror("Error opening file");
@@ -19,7 +21,7 @@ int create_new_file(char* path) //path: 파일 경로
 
 int open_existing_file(char* path)
 {
-    int fd = open(path, O_RDWR);
+    fd = open(path, O_RDWR);
     if (fd == -1)
     {
         perror("Error opening file");
@@ -35,7 +37,6 @@ void save_file_and_quit(int fd)
         close(fd); //파일 닫는다.
         printf("file close and save successfully!\n");
     }
-    exit(0); //정상종료
 }
 
 //사용자가 어셈블리 명령어를 입력하면, 파일에 쓴다
@@ -52,4 +53,9 @@ void write_command_to_file(char* command_by_user, int fd) //인자1: 사용자�
     strcpy(buffer, command_by_user); //버퍼에 넣어두고
     write(fd, buffer, strlen(buffer)); //파일에 명령어를 씀
     write(fd, "\n", 1); //개행문자 추가
+}
+
+int get_current_fd()
+{
+    return fd;
 }

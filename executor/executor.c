@@ -1,7 +1,11 @@
 #include "executor.h"
+
+#include <stdlib.h>
+
 #include "../fetcher/fetcher.h"
 #include "../register/register.h"
 #include "../memory/memory.h"
+#include "../filesystem/filesystem.h"
 
 extern unsigned char R0;
 extern unsigned char R1;
@@ -56,8 +60,15 @@ void jmp_execute(unsigned char memory_address_to_jump)
 
 void jeq_execute(unsigned char memory_address_to_jeq)
 {
-    if(SR == 1) //상태 레지스터가 1이면
+    if (SR == 1) //상태 레지스터가 1이면
     {
         jmp_execute(memory_address_to_jeq); //특정 주소로 PC이동
     }
+}
+
+void hlt_execute()
+{
+    int current_fd = get_current_fd(); //현재 열고있는 파일 디스크립터
+    save_file_and_quit(current_fd); //파일 닫고
+    exit(0); //프로그램 종료
 }

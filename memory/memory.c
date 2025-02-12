@@ -95,7 +95,7 @@ void set_command_to_memory(char** parsed_command)
         unsigned char address = atoi(extracted_memory_address); //점프 할 메모리 주소
         memory[PC_temp] = 0x50 | address; // 명령어(4비트) | 주소(4비트) 메모리에 세팅
     }
-    else if (strcmp(parsed_command[0], "JEQ") == 0) //JEQ 비교했을때 참이면 JMP를 한다. 여기서 비교연산은 SUB명령어를 확인한다.
+    else if (strcmp(parsed_command[0], "JEQ") == 0) //JEQ: 비교했을때 참이면 JMP를 한다. 여기서 비교연산은 SUB명령어를 확인한다.
     {
         //점프할 메모리 주소
         unsigned char* extracted_memory_address = (unsigned char*)malloc(sizeof(unsigned char) * 16); //16바이트 할당
@@ -109,6 +109,10 @@ void set_command_to_memory(char** parsed_command)
 
         unsigned char address = atoi(extracted_memory_address);
         memory[PC_temp] = 0x60 | address; //명령어(4비트)와 주소(4비트)를 메모리에 세팅
+    }
+    else if (strcmp(parsed_command[0], "HLT") == 0) //HLT: 프로그램종료
+    {
+        memory[PC_temp] = 0x70; //메모리에 0111 0000을 세팅
     }
 }
 

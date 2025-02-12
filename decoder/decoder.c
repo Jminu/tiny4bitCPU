@@ -77,17 +77,23 @@ void decode()
         }
         break;
     case 0x5: //JMP command
-        if(mode == 0x00) //0x00모드는 절대주소로 점프
+        if (mode == 0x00) //0x00모드는 절대주소로 점프
         {
             //주소는 0~15까지만 존재한다.
             unsigned char dest_memory_address = operand; //JMP는 단일항 연산자, 그냥 operand의 값이 점프 할 주소임
             jmp_execute(dest_memory_address); //점프실행
         }
+        break;
     case 0x6: //JEQ command
-        if(mode == 0x00)
+        if (mode == 0x00)
         {
             unsigned char dest_memory_address = operand; //점프할 주소
             jeq_execute(dest_memory_address); //JEQ실행
+        }
+        break;
+    case 0x7: //HLT명령어는 피연산자가 필요없다. 상위 4비트만 추출하면됨=opcode
+        if (mode == 0x00)
+        {
         }
     }
 }
