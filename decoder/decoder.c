@@ -94,6 +94,8 @@ void decode()
     case 0x7: //HLT명령어는 피연산자가 필요없다. 상위 4비트만 추출하면됨=opcode
         if (mode == 0x00)
         {
+            hlt_execute();
         }
+        break;
     }
 }

@@ -9,5 +9,6 @@ void add_execute(unsigned char* dest_reg, unsigned char* src_reg);
 void sub_execute(unsigned char* dest_reg, unsigned char* src_reg);
 void jmp_execute(unsigned char dest_reg);
 void jeq_execute(unsigned char dest_reg);
+void hlt_execute();
 
 #endif //EXECUTE_H
