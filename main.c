@@ -12,8 +12,11 @@ int main(void)
     char* code = NULL;
     char** parsed_code = NULL;
 
-    int fd = create_new_file("./example.asm");
+    char* file_name;
+    scanf("%s", file_name); //유저에게서 파일이름 받음
+    getchar(); //버퍼에서 개행문자 빼줌
 
+    int fd = create_new_file(file_name); //파일 생성함
 
     while (1)
     {
