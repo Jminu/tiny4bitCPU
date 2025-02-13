@@ -13,10 +13,13 @@ int main(void)
     char** parsed_code = NULL;
 
     char* file_name;
+
+    printf("파일이름 입력 : ");
     scanf("%s", file_name); //유저에게서 파일이름 받음
     getchar(); //버퍼에서 개행문자 빼줌
 
     int fd = create_new_file(file_name); //파일 생성함
+    show_files();
 
     while (1)
     {
