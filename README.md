@@ -1,17 +1,30 @@
-# 4bit cpu 에뮬레이터
+# 4Bit Tiny CPU
++ ISA
++ Register
++ Memory
++ Fetch-Decode-Execute
+---
+## ISA
+| instruction | bianry | action                          |
+|-------------|--------|---------------------------------|
+| MOV         | 0x0    | save to register                |
+| LOAD        | 0x1    | load to register from RAM       |
+| STR         | 0x2    | store to RAM from register      |
+| ADD         | 0x3    | add two register value          |
+| SUB         | 0x4    | substract two register value    |
+| JMP         | 0x5    | jump to address                 |
+| JEQ         | 0x6    | jump to address if compare same |
+| HLT         | 0x7    | program exit                    |
 
-## 목적
-C언어 숙련도 향상 및 컴퓨터 구조, 프로그램 작동 원리 학습
-## 기능
-+ 메모리 상태 출력
-+ 어셈블리어 해석
-+ 명령어 작동
-### 명령어 지원
-+ MOV (구현o)
-+ LOAD (구현o)
-+ STR (구현o)
-+ ADD (구현o)
-+ SUB (구현o)
-+ JMP (구현o)
-+ JEQ (구현X)
-+ HLT (구현X)
+---
+## Register
++ R0
++ R1
++ R2
++ R3
+
+---
+## RAM
+
+---
+## Fetch-Decode-Execute Cycle
