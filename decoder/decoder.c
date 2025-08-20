@@ -8,7 +8,7 @@
 //fetch해온 명령어를 해석
 void decode()
 {
-    FETCHED_INSTRUCTION fetched_instruction;
+    FETCHED_INSTRUCTION fetched_instruction = fetch_instruction();
 
     unsigned char mode = fetched_instruction.mode;
     unsigned char opcode = fetched_instruction.opcode;
