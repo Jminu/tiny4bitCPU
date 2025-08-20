@@ -61,6 +61,10 @@ void jeq_execute(unsigned char memory_address_to_jeq)
     {
         jmp_execute(memory_address_to_jeq); //특정 주소로 PC이동
     }
+    else
+    {
+        PC += 1;
+    }
 }
 
 void hlt_execute()
