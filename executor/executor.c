@@ -1,8 +1,5 @@
 #include "executor.h"
-
 #include <stdlib.h>
-
-#include "../fetcher/fetcher.h"
 #include "../register/register.h"
 #include "../memory/memory.h"
 #include "../filesystem/filesystem.h"

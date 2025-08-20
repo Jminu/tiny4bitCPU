@@ -1,5 +1,4 @@
 #include "memory.h"
-#include "../fetcher/fetcher.h"
 #include <string.h>
 #include "../register/register.h"
 #include "../isa/isa.h"

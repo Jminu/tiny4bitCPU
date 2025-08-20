@@ -4,8 +4,6 @@
 #include "../fetcher/fetcher.h"
 #include "../executor/executor.h"
 #include "../isa/isa.h"
-#include <stdio.h>
-
 
 //fetch해온 명령어를 해석
 void decode()

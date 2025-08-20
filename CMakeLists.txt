@@ -11,7 +11,6 @@ add_executable(4BitComptuer main.c
         isa/isa.h
         cpu/cpu.h
         cpu/cpu.c
-        isa/isa.c
         decoder/decoder.h
         decoder/decoder.c
         fetcher/fetcher.c

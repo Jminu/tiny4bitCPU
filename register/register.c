@@ -8,13 +8,11 @@
 #include <string.h>
 #include <stdio.h>
 
-
 //register.h에 extern변수를 정의
 unsigned char R0 = 0;
 unsigned char R1 = 0;
 unsigned char R2 = 0;
 unsigned char R3 = 0;
-
 unsigned char SR = 0; //state register, JEQ에서 사용하기 위함
 
 //PC는 execution될때만 움직인다.
