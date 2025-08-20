@@ -23,4 +23,6 @@ add_executable(4BitComptuer main.c
         display/display_memory_state.c
         display/display_memory_state.h
         filesystem/filesystem.c
-        filesystem/filesystem.h)
+        filesystem/filesystem.h
+        util/util.c
+        util/util.h)

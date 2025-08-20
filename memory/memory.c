@@ -5,6 +5,7 @@
 #include "../isa/isa.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include "../util/util.h"
 
 //16byte 메모리 정의
 unsigned char memory[16] = {0};
@@ -33,41 +34,23 @@ void set_command_to_memory(char** parsed_command)
     }
     else if (strcmp(parsed_command[0], "STR") == 0) //STR: 0010 레지스터에서 메모리로 저장
     {
-        char* extracted_memory_address = (char*)malloc(sizeof(char) * 16);
         unsigned char src_reg = get_register_code(parsed_command[1]);
 
         memory[PC_temp] = (STR << 4) | src_reg; // STR과 src_reg를 한 바이트안에 넣음
         //만약 STR R3 [14]면, memory[i] = 0010 0011 이다.
 
         //저장할 메모리 주소를 추출한다. [15]라면 15를 추출해야함
-        char* addr = extracted_memory_address;
-        for (int i = 1; i < strlen(parsed_command[2]) - 1; i++)
-        {
-            *addr = parsed_command[2][i];
-            addr++;
-        }
-
-        unsigned char address = atoi(extracted_memory_address); //저장할 메모리 주소
+        unsigned char address = extract_address(parsed_command[2]);
         memory[PC_temp + 1] = address; //다음주소에 저장할 메모리 주소 저장
-        free(extracted_memory_address);
     }
     else if (strcmp(parsed_command[0], "LOAD") == 0) //LOAD: 0001 메모리에서 레지스터로 적재, ex)LOAD R0 [14]
     {
-        char* extracted_memory_address = (char*)malloc(sizeof(char) * 16); //데이터 가져올 메모리 주소
         unsigned char dest_reg = get_register_code(parsed_command[1]); //저장할 레지스터
 
         memory[PC_temp] = (LOAD << 4) | dest_reg; // LOAD랑 dest_reg를 한 바이트안에 넣음
 
-        char* addr = extracted_memory_address;
-        for (int i = 1; i < strlen(parsed_command[2]) - 1; i++)
-        {
-            *addr = parsed_command[2][i];
-            addr++;
-        }
-
-        unsigned char address = atoi(extracted_memory_address); //데이터 가져올 메모리 주소
+        unsigned char address = extract_address(parsed_command[2]);
         memory[PC_temp + 1] = address; //메모리에 데이터 가져올 메모리 주소 저장
-        free(extracted_memory_address);
     }
     else if (strcmp(parsed_command[0], "ADD") == 0) //ADD: 0011    R1, R2 레지스터 값을 더해서 R1에 저장한다.
     {
@@ -85,34 +68,12 @@ void set_command_to_memory(char** parsed_command)
     }
     else if (strcmp(parsed_command[0], "JMP") == 0) //JMP: 특정한 메모리의 주소(절대주소)로 PC를 이동시킨다.
     {
-        //점프할 메모리 주소
-        unsigned char* extracted_memory_address = (unsigned char*)malloc(sizeof(unsigned char) * 16); //16바이트 할당
-
-        //점프할 메모리 주소를 추출한다. [15]라면 15를 추출해야함
-        unsigned char* addr = extracted_memory_address;
-        for (int i = 1; i < strlen(parsed_command[2]) - 1; i++)
-        {
-            *addr = parsed_command[2][i];
-            addr++;
-        }
-
-        unsigned char address = atoi(extracted_memory_address); //점프 할 메모리 주소
+        unsigned char address = extract_address(parsed_command[2]);
         memory[PC_temp] = (JMP << 4) | address; // 명령어(4비트) | 주소(4비트) 메모리에 세팅
     }
     else if (strcmp(parsed_command[0], "JEQ") == 0) //JEQ: 비교했을때 참이면 JMP를 한다. 여기서 비교연산은 SUB명령어를 확인한다.
     {
-        //점프할 메모리 주소
-        unsigned char* extracted_memory_address = (unsigned char*)malloc(sizeof(unsigned char) * 16); //16바이트 할당
-
-        //점프할 메모리 주소를 추출한다. [15]라면 15를 추출해야함
-        unsigned char* addr = extracted_memory_address;
-        for (int i = 1; i < strlen(parsed_command[2]) - 1; i++)
-        {
-            *addr = parsed_command[2][i];
-            addr++;
-        }
-
-        unsigned char address = atoi(extracted_memory_address);
+        unsigned char address = extract_address(parsed_command[2]);
         memory[PC_temp] = (JEQ << 4) | address; //명령어(4비트)와 주소(4비트)를 메모리에 세팅
     }
     else if (strcmp(parsed_command[0], "HLT") == 0) //HLT: 프로그램종료
