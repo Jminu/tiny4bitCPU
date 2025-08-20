@@ -24,8 +24,8 @@ unsigned char PC = 0; //프로그램 카운터
 //레지스터에 값 설정(즉시값 설정)
 void set_register_immediate(unsigned char* reg, unsigned char value)
 {
-    *reg = value;
-    *reg &= BIT_MASK; //bit masking을 통한 상위 4개비트 무시
+    *reg = value; // value도 0~15까지의 숫자만 입력가능함
+    *reg &= BIT_MASK; //bit masking을 통한 상위 4개비트 무시, 4Bit만 사용
 }
 
 //레지스터에 값 설정 (레지스터끼리 복사)
@@ -65,6 +65,8 @@ unsigned char get_register_code(unsigned char* reg)
         return 0x3;
     if (strcmp(reg, "SR") == 0)
         return 0x4;
+    if (strcmp(reg, "PC") == 0)
+        return 0x5;
     return -1; //잘못된 레지스터 이름
 }
 
