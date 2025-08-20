@@ -3,9 +3,9 @@
 
 typedef struct fetched_instruction
 {
-    char mode;
-    char opcode;
-    char operand;
+    unsigned char mode;
+    unsigned char opcode;
+    unsigned char operand;
 } FETCHED_INSTRUCTION;
 
 extern FETCHED_INSTRUCTION fetched_instruction;
