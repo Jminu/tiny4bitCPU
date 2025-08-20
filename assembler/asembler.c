@@ -25,11 +25,10 @@ char** parse_command(char* command)
     int cnt = 0;
     char* ptr = strtok(command, " "); //공백 문자를 기준으로 문자열을 자른다. 포인터를 반환
 
-    while (ptr != NULL && cnt < 3) //최대 3개까지 파싱
+    while (ptr != NULL && cnt < 3) //최대 3개까지 파싱 - |명령어|피연산자|피연산자|
     {
-        parsed_command[cnt] = ptr; //명령어 저장
+        parsed_command[cnt++] = ptr; //명령어 저장
         ptr = strtok(NULL, " "); //다음 문자열을 잘라서 포인터 반환
-        cnt++;
     }
 
     while (cnt < 3)
