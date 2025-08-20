@@ -20,7 +20,7 @@ void set_command_to_memory(char** parsed_command)
             unsigned char immediate_value = atoi(parsed_command[2]);
             unsigned char dest_reg = get_register_code(parsed_command[1]);
 
-            memory[PC_temp] = (MOV | 0x80) | dest_reg; //0x80 = 1000 (즉시값 MOV)
+            memory[PC_temp] = (MOV << 4) | 0x80 | dest_reg; //0x80 = 1000 (즉시값 MOV)
             memory[PC_temp + 1] = immediate_value; // 다음 바이트셀에 즉시값 저장
         }
         else //2번째 인자가 레지스터 이름이면, '값복사'
@@ -28,7 +28,7 @@ void set_command_to_memory(char** parsed_command)
             unsigned char dest_reg = get_register_code(parsed_command[1]); //목적 레지스터 코드
             unsigned char src_reg = get_register_code(parsed_command[2]); //소스 레지스터 코드
 
-            memory[PC_temp] = (dest_reg << 2) | src_reg; // 0000 01 11 : R1과 R3의 복사
+            memory[PC_temp] = (MOV << 4) | (dest_reg << 2) | src_reg; // 0000 01 11 : R1과 R3의 복사
         }
     }
     else if (strcmp(parsed_command[0], "STR") == 0) //STR: 0010 레지스터에서 메모리로 저장
