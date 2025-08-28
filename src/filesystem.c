@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <dirent.h>
+#include <ncurses.h>
 
 static int fd;
 
@@ -17,7 +18,7 @@ int create_new_file(char* path) //path: 파일 경로
         perror("Error opening file");
         return -1;
     }
-    printf("File created successfully\n");
+    mvprintw(1, 2, "File created successfully");
     return fd; //파일디스크립터 반환
 }
 
@@ -63,26 +64,31 @@ int get_current_fd()
 }
 
 //유저가 생성한 소스코드파일을 보여준다
-void show_files() {
-    DIR *directory;
-    struct dirent *entry;
+void show_files()
+{
+    DIR* directory;
+    struct dirent* entry;
 
     // 현재 디렉토리를 엽니다. 만약 다른 디렉토리라면 경로를 지정하세요.
     directory = opendir(".");
-    if (directory == NULL) {
+    if (directory == NULL)
+    {
         perror("디렉토리 열기 실패");
         return;
     }
 
     printf("'.asm' 파일 목록:\n");
     // 디렉토리 내의 항목을 순회합니다.
-    while ((entry = readdir(directory)) != NULL) {
+    while ((entry = readdir(directory)) != NULL)
+    {
         // 일반 파일인지 확인합니다.
-        if (entry->d_type == DT_REG) {
-            char *filename = entry->d_name;
+        if (entry->d_type == DT_REG)
+        {
+            char* filename = entry->d_name;
             size_t len = strlen(filename);
             // 파일 이름 길이가 4 이상이어야 ".asm" 확장자가 존재할 수 있음
-            if (len >= 4 && strcmp(filename + len - 4, ".asm") == 0) {
+            if (len >= 4 && strcmp(filename + len - 4, ".asm") == 0)
+            {
                 printf("%s\n", filename);
             }
         }

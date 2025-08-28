@@ -7,33 +7,56 @@
 #include "filesystem.h"
 #include "display.h"
 #include <ncurses.h>
+#include <unistd.h>
+#include <string.h>
 
 int main(void)
 {
-    char* code = NULL;
-    char** parsed_code = NULL;
+    ncurse_init(); // ncurse 초기화
 
-    char* file_name;
+    char* code = NULL; // 사용자가 입력한 코드
+    char** parsed_code = NULL; // 파싱된 사용자 코드
+    char file_name[100]; // 저장할 asm파일 이름
 
-    printf("파일이름 입력 : ");
-    scanf("%s", file_name); //유저에게서 파일이름 받음
-    getchar(); //버퍼에서 개행문자 빼줌
+    mvprintw(1, 2, "Input FileName: ");
+    getstr(file_name);
 
     int fd = create_new_file(file_name); //파일 생성함
-    show_files();
+    move(1, 2);
+    clrtoeol();
+    mvprintw(1, 2, "%d", fd);
+    sleep(3);
+    //show_files();
 
-    ncurse_init(); // ncurse 초기화
 
     while (1)
     {
-        printf(">>>");
-        code = input_command(); //명렁어 입력 ex) MOV R0 5
-        write_command_to_file(code, fd); //파일에 작성
-        parsed_code = parse_command(code); //코드 파싱
-        set_command_to_memory(parsed_code); //코드를 메모리로 load
-        fetch_instruction(); //fetch code
-        decode(); //decode
+        // 화면 초기화
+        clear();
+
+        // 메모리 상태, 레지스터 상태 표시
         draw_memory_view();
-        show_register();
+        draw_register_view(21, 2);
+
+        // 명령어 입력
+        mvprintw(23, 2, ">>> ");
+
+        // 화면 업데이트
+        refresh();
+        code = input_command();
+
+        if (strcmp(code, "quit") == 0)
+        {
+            break;
+        }
+
+        write_command_to_file(code, fd);
+        parsed_code = parse_command(code);
+        set_command_to_memory(parsed_code);
+        fetch_instruction();
+        decode();
     }
+
+    endwin();
+    return 0;
 }

@@ -2,12 +2,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ncurses.h>
 
 char* input_command()
 {
     static char command[80];
-    fgets(command, sizeof(command), stdin); //공백을 포함하여 입력받음
-    command[strlen(command) - 1] = '\0'; //마지막 개행문자 제거하고 NULL로 수정
+    getstr(command);
 
     return command; //명령어 반환
 }

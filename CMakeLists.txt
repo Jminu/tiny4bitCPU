@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.29)
-project(4BitComptuer C)
+project(4BitComputer C)
 
 include_directories(include)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(4BitComptuer main.c
+add_executable(4BitComputer main.c
         src/register.c
         include/register.h
         include/memory.h
@@ -28,4 +28,4 @@ add_executable(4BitComptuer main.c
         src/util.c
         include/util.h)
 
-target_link_libraries(4BitComptuer ncurses)
+target_link_libraries(4BitComputer ncurses)
