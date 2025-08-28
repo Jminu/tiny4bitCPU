@@ -5,6 +5,8 @@
 #include "fetcher.h"
 #include "decoder.h"
 #include "filesystem.h"
+#include "display.h"
+#include <ncurses.h>
 
 int main(void)
 {
@@ -20,6 +22,8 @@ int main(void)
     int fd = create_new_file(file_name); //파일 생성함
     show_files();
 
+    ncurse_init(); // ncurse 초기화
+
     while (1)
     {
         printf(">>>");
@@ -29,7 +33,7 @@ int main(void)
         set_command_to_memory(parsed_code); //코드를 메모리로 load
         fetch_instruction(); //fetch code
         decode(); //decode
-        show_memory();
+        draw_memory_view();
         show_register();
     }
 }

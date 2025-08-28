@@ -1,7 +1,7 @@
 #include "memory.h"
 #include <string.h>
 #include "register.h"
-#include "../include/isa.h"
+#include "isa.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include "util.h"
@@ -83,40 +83,40 @@ void set_command_to_memory(char** parsed_command)
 
 
 //메모리 상태 2진수로 보여준다.
-void show_memory()
-{
-    int num = 0;
-    printf("========================\n");
-    printf("%-6s %-8s %s\n", "Index", "PC", "Binary"); // 헤더 추가
-    printf("========================\n");
-
-    for (int i = 0; i < 16; i++)
-    {
-        char pc_marker[4] = " "; // PC 표시용
-        if (PC == i)
-        {
-            snprintf(pc_marker, sizeof(pc_marker), "PC");
-        }
-
-        printf("%-6d %-6s", i, pc_marker); // Index와 PC 표시
-
-        unsigned char arr[8] = {0};
-        num = memory[i];
-        for (int j = 7; j >= 0; j--)
-        {
-            if (num != 0)
-            {
-                arr[j] = num % 2;
-                num = num / 2;
-            }
-        }
-        for (int j = 0; j < 8; j++)
-        {
-            if (j == 4)
-                printf(" "); // 4비트 단위로 공백 추가
-            printf("%d", arr[j]);
-        }
-        printf("\n");
-    }
-    printf("========================\n");
-}
+// void show_memory()
+// {
+//     int num = 0;
+//     printf("========================\n");
+//     printf("%-6s %-8s %s\n", "Index", "PC", "Binary"); // 헤더 추가
+//     printf("========================\n");
+//
+//     for (int i = 0; i < 16; i++)
+//     {
+//         char pc_marker[4] = " "; // PC 표시용
+//         if (PC == i)
+//         {
+//             snprintf(pc_marker, sizeof(pc_marker), "PC");
+//         }
+//
+//         printf("%-6d %-6s", i, pc_marker); // Index와 PC 표시
+//
+//         unsigned char arr[8] = {0};
+//         num = memory[i];
+//         for (int j = 7; j >= 0; j--)
+//         {
+//             if (num != 0)
+//             {
+//                 arr[j] = num % 2;
+//                 num = num / 2;
+//             }
+//         }
+//         for (int j = 0; j < 8; j++)
+//         {
+//             if (j == 4)
+//                 printf(" "); // 4비트 단위로 공백 추가
+//             printf("%d", arr[j]);
+//         }
+//         printf("\n");
+//     }
+//     printf("========================\n");
+// }
