@@ -1,8 +1,8 @@
-#include "executor.h"
+#include "../include/executor.h"
 #include <stdlib.h>
-#include "../register/register.h"
-#include "../memory/memory.h"
-#include "../filesystem/filesystem.h"
+#include "register.h"
+#include "memory.h"
+#include "filesystem.h"
 
 extern unsigned char R0;
 extern unsigned char R1;

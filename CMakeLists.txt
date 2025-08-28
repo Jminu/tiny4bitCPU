@@ -1,27 +1,29 @@
 cmake_minimum_required(VERSION 3.29)
 project(4BitComptuer C)
 
+include_directories(include)
+
 set(CMAKE_C_STANDARD 11)
 
 add_executable(4BitComptuer main.c
-        register/register.c
-        register/register.h
-        memory/memory.h
-        memory/memory.c
-        isa/isa.h
-        cpu/cpu.h
-        cpu/cpu.c
-        decoder/decoder.h
-        decoder/decoder.c
-        fetcher/fetcher.c
-        fetcher/fetcher.h
-        executor/executor.c
-        executor/executor.h
-        assembler/asembler.c
-        assembler/assembler.h
-        display/display_memory_state.c
-        display/display_memory_state.h
-        filesystem/filesystem.c
-        filesystem/filesystem.h
-        util/util.c
-        util/util.h)
+        src/register.c
+        include/register.h
+        include/memory.h
+        src/memory.c
+        include/isa.h
+        include/cpu.h
+        src/cpu.c
+        include/decoder.h
+        src/decoder.c
+        src/fetcher.c
+        include/fetcher.h
+        src/executor.c
+        include/executor.h
+        src/asembler.c
+        include/assembler.h
+        src/display_memory_state.c
+        include/display_memory_state.h
+        src/filesystem.c
+        include/filesystem.h
+        src/util.c
+        include/util.h)

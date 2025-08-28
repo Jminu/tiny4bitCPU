@@ -1,7 +1,5 @@
 #include "cpu.h"
-
-#include "../memory/memory.h"
-#include "../register/register.h"
+#include "memory.h"
 
 void load_register(unsigned char* reg, unsigned char mem_address)
 {

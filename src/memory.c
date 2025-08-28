@@ -1,10 +1,10 @@
 #include "memory.h"
 #include <string.h>
-#include "../register/register.h"
-#include "../isa/isa.h"
+#include "register.h"
+#include "../include/isa.h"
 #include <stdlib.h>
 #include <stdio.h>
-#include "../util/util.h"
+#include "util.h"
 
 //16byte 메모리 정의
 unsigned char memory[16] = {0};

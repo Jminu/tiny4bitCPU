@@ -1,11 +1,10 @@
-#include "register/register.h"
+#include "register.h"
 #include <stdio.h>
-#include "cpu/cpu.h"
-#include "memory/memory.h"
-#include "assembler/assembler.h"
-#include "fetcher/fetcher.h"
-#include "decoder/decoder.h"
-#include "filesystem/filesystem.h"
+#include "memory.h"
+#include "assembler.h"
+#include "fetcher.h"
+#include "decoder.h"
+#include "filesystem.h"
 
 int main(void)
 {

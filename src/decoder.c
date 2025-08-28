@@ -1,9 +1,9 @@
-#include "decoder.h"
-#include "../memory/memory.h"
-#include "../register/register.h"
-#include "../fetcher/fetcher.h"
-#include "../executor/executor.h"
-#include "../isa/isa.h"
+#include "../include/decoder.h"
+#include "../include/memory.h"
+#include "register.h"
+#include "fetcher.h"
+#include "executor.h"
+#include "isa.h"
 
 //fetch해온 명령어를 해석
 void decode()
