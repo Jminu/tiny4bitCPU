@@ -9,6 +9,7 @@
 #include <ncurses.h>
 #include <unistd.h>
 #include <string.h>
+#include <stdlib.h>
 
 int main(void)
 {
@@ -53,6 +54,7 @@ int main(void)
         write_command_to_file(code, fd);
         parsed_code = parse_command(code);
         set_command_to_memory(parsed_code);
+        free(parsed_code);
         fetch_instruction();
         decode();
     }
