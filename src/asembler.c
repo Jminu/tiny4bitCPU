@@ -14,7 +14,7 @@ char* input_command()
     return command; //명령어 반환
 }
 
-char** parse_command(char* command)
+char** parse_command(const char* command)
 {
     //동적메모리 할당
     char** parsed_command = malloc(3 * sizeof(char*)); //parsed_command -> | 주소1 | 주소2 | 주소 3|

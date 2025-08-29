@@ -13,7 +13,7 @@
 unsigned char memory[MEMORY_SIZE] = {0};
 
 //나눠진 어셈블리 코드를 메모리에 저장한다
-void set_command_to_memory(char** parsed_command)
+void set_command_to_memory(const char** parsed_command)
 {
     unsigned char PC_temp = PC;
     if (strcmp(parsed_command[0], "MOV") == 0) //MOV : 0000, 즉시값 MOV : 1000

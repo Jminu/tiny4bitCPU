@@ -8,6 +8,6 @@
 #define MEMORY_SIZE 16
 
 extern unsigned char memory[MEMORY_SIZE]; //16byte
-void set_command_to_memory(char** parsed_command);
+void set_command_to_memory(const char** parsed_command);
 
 #endif //MEMORY_H
