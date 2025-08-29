@@ -6,7 +6,7 @@
 #include "isa.h"
 
 //fetch해온 명령어를 해석
-void decode()
+int decode()
 {
     FETCHED_INSTRUCTION fetched_instruction = fetch_instruction();
 
@@ -96,8 +96,13 @@ void decode()
     case HLT: //HLT명령어는 피연산자가 필요없다. 상위 4비트만 추출하면됨=opcode
         if (mode == 0x0)
         {
-            hlt_execute();
+            if (hlt_execute() == 1)
+            {
+                return 1;
+            }
         }
         break;
     }
+
+    return 0;
 }

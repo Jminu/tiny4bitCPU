@@ -56,7 +56,11 @@ int main(void)
         set_command_to_memory(parsed_code);
         free(parsed_code);
         fetch_instruction();
-        decode();
+        int status = decode();
+        if (status == 1)
+        {
+            break;
+        }
     }
 
     endwin();

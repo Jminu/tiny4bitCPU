@@ -68,9 +68,10 @@ void jeq_execute(unsigned char memory_address_to_jeq)
 }
 
 /* 이거 방어코드 추가해야함 */
-void hlt_execute()
+int hlt_execute()
 {
     int current_fd = get_current_fd(); //현재 열고있는 파일 디스크립터
     save_file_and_quit(current_fd); //파일 닫고
-    exit(0); //프로그램 종료
+
+    return 1;
 }

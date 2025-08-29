@@ -2,6 +2,6 @@
 #define DECODER_H
 
 
-void decode();
+int decode();
 
 #endif //DECODER_H
