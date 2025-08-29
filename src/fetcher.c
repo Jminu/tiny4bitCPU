@@ -1,5 +1,5 @@
-#include "../include/fetcher.h"
-#include "../include/memory.h"
+#include "fetcher.h"
+#include "memory.h"
 #include "register.h"
 
 FETCHED_INSTRUCTION fetch_instruction()

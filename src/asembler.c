@@ -4,9 +4,11 @@
 #include <stdlib.h>
 #include <ncurses.h>
 
+#define INPUT_CMD_SIZE 100
+
 char* input_command()
 {
-    static char command[80];
+    static char command[INPUT_CMD_SIZE];
     getstr(command);
 
     return command; //명령어 반환

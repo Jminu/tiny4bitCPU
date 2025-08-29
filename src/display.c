@@ -5,14 +5,16 @@
 #include "register.h"
 #include "display.h"
 
+#define LINE_BUF_SIZE 100
+
 void draw_memory_view()
 {
     int y = 1;
     int x = 2;
-    char line_buf[100];
+    char line_buf[LINE_BUF_SIZE];
 
     mvprintw(y++, x, "=====================================");
-    snprintf(line_buf, sizeof(line_buf), "%-6s %-8s %s", "Index", "PC", "Binary");
+    snprintf(line_buf, LINE_BUF_SIZE, "%-6s %-8s %s", "Index", "PC", "Binary");
     mvprintw(y++, x, line_buf);
     mvprintw(y++, x, "=====================================");
 
@@ -30,7 +32,7 @@ void draw_memory_view()
 
 
         // printf로 한 줄에 출력하던 것을 mvprintw로 좌표에 맞게 출력
-        snprintf(line_buf, sizeof(line_buf), "%-6d %-8s %s", i, pc_marker, bin_str);
+        snprintf(line_buf, LINE_BUF_SIZE, "%-6d %-8s %s", i, pc_marker, bin_str);
         mvprintw(y++, x, line_buf);
     }
     mvprintw(y++, x, "====================================");
