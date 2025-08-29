@@ -9,6 +9,5 @@
 
 extern unsigned char memory[MEMORY_SIZE]; //16byte
 void set_command_to_memory(char** parsed_command);
-void show_memory();
 
 #endif //MEMORY_H

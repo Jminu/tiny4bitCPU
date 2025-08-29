@@ -26,7 +26,6 @@ int main(void)
     move(1, 2);
     clrtoeol();
     mvprintw(1, 2, "%d", fd);
-    sleep(3);
     //show_files();
 
 

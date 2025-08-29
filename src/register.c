@@ -67,8 +67,3 @@ unsigned char get_register_code(unsigned char* reg)
         return 0x5;
     return -1; //잘못된 레지스터 이름
 }
-
-void show_register()
-{
-    printf("R0: %x R1: %x R2: %x R3: %x SR: %x\n", R0, R1, R2, R3, SR);
-}
